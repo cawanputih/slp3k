@@ -8,55 +8,54 @@
 <body>
 
 	<div class ="container-fluid">
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="#">SLP3K</a>
-				</div>
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="daftarproker.html">Home</a></li>
-					
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#"><span class="glyphicon glyphicon-user"></span> Daftar</a></li>
-					<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-				</ul>
-			</div>
-		</nav>
-		<br><br>
-	<h3 class="text-center">Pendaftaran Program Kerja </h3>	
-	</div>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">SLP3K</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="index.php">Home</a></li>
+                    
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+        <br><br>
+    <h3 class="text-center">Tambah Program Kerja</h2>    
+    </div>
 
 	 <br>
 	 <div class="container">
-            <form class="form-horizontal" role="form">
+            <form action="server/tambahprokerserver.php" class="form-horizontal" role="form" method="post">
                 <div class="form-group ">
                     <label for="firstName" class="col-sm-3 control-label ">Nama Program Kerja</label>
                     <div class="col-sm-9">
-                        <input type="text" id="firstName" placeholder="Program Kerja X" class="form-control" autofocus>
+                        <input type="text" name="namaproker" id="firstName" placeholder="Program Kerja X" class="form-control" autofocus>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="startdate" class="col-sm-3 control-label">Tanggal Mulai</label>
                     <div class="col-sm-9">
-                        <input type="date" id="startdate" class="form-control">
+                        <input type="date" name="tglmulai" id="startdate" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="enddate" class="col-sm-3 control-label">Tanggal Selesai</label>
                     <div class="col-sm-9">
-                        <input type="date" id="enddate" class="form-control">
+                        <input type="date" name="tglselesai" id="enddate" class="form-control">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="deskripsi" class="col-sm-3 control-label ">Deskripsi</label>
                     <div class="col-sm-9">
-                        <input type="text" id="desc" placeholder="" class="form-control" autofocus>
+                        <input type="text" name="deskripsi" id="desc" placeholder="" class="form-control" autofocus>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-9 col-sm-offset-3">
-                        <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal">Daftarkan</button>
+                        <input type="submit" class="btn btn-primary btn-block" data-toggle="modal" value="Daftarkan">
                     </div>
                 </div>
             </form> <!-- /form -->

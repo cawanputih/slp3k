@@ -1,3 +1,22 @@
+<?php 
+
+	// connect to the database server
+	require_once('dbconnect.php');
+	global $conn;
+
+	$idproker = $_GET['idproker'];
+	$sql = "SELECT * FROM tabelprogres WHERE idproker = '$idproker'";
+	$sql2 = "SELECT * FROM tabelproker WHERE idproker = '$idproker'";
+
+	$result = mysqli_query($conn,$sql);
+	$result2 = mysqli_query($conn,$sql2);
+
+	$row2 = $result2->fetch_assoc();
+	$namaproker = $row2['namaproker'];
+
+?>
+
+
 <html>
 <head>
 	<title></title>
@@ -14,17 +33,16 @@
 					<a class="navbar-brand" href="#">SLP3K</a>
 				</div>
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="daftarproker.html">Home</a></li>
+					<li class="active"><a href="index.php">Home</a></li>
 					
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#"><span class="glyphicon glyphicon-user"></span> Daftar</a></li>
-					<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+					<li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 				</ul>
 			</div>
 		</nav>
 		<br><br>
-	<h3 class="text-center">Daftar Progres Program Kerja Penyuluhan</h2>	
+	<h3 class="text-center">Daftar Progres Program Kerja <?php echo $namaproker; ?></h2>	
 	</div>
 	<br>
 
@@ -41,33 +59,25 @@
 		                <th class="col-xs-1"></th>
 		            </tr>
 		        </thead>
-		        <tbody>
-		            <tr>
-		                <td>12 Februari 2017</td>
-		                <td>Melakukan penyuluhan di SMA Rantau Parapat</td>
-		                <td><a href="editprogres.html"><button type="button" class="btn btn-primary btn-block" data-toggle="modal" >Edit</button></a></td>
-		                <td><button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#myModal">Hapus</button></td>
 
-		               
-		            </tr>
-		            <tr>
-		                <td>15 Februari 2017</td>
-		                <td>Melakukan penyuluhan di SMA Siborong-borong</td>
-		                <td><a href="editprogres.html"><button type="button" class="btn btn-primary btn-block" data-toggle="modal" >Edit</button></a></td>
-		                <td><button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#myModal">Hapus</button></td>
-		            </tr>
-		             <tr>
-		                <td>22 Februari 2017</td>
-		                <td>Melakukan penyuluhan di SMA Pelita Harapan</td>
-		                <td><a href="editprogres.html"><button type="button" class="btn btn-primary btn-block" data-toggle="modal" >Edit</button></a></td>
-		                <td><button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#myModal">Hapus</button></td>
-		            </tr>
-		        </tbody>
+		        <?php
+		        	while($row = $result->fetch_assoc()){
+		        		echo '<tr>';
+		        		echo '<td>'.$row['tanggalprogres'].'</td>';
+		        		echo '<td>'.$row['namaprogres'].'</td>';
+		        		echo '<td><a href=editprogres.php?idproker='.$row['idproker'].'&idprogres='.$row['idprogres'].'><button type="button" class="btn btn-primary btn-block" data-toggle="modal">Edit</button></a></td>';
+		        		echo '<td><a href=server/hapusprogresserver.php?idproker='.$row['idproker'].'&idprogres='.$row['idprogres'].'><button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#myModal">Hapus</button></td>';
+		        		echo '</tr>';
+		        	}
+
+
+				?>
+
 		    </table>
 		</div>
 
 		<div class="col-xs-3">
-			<a href="tambahprogres.html"><button type="button" class="btn btn-warning btn-block " data-toggle="modal">Tambah Progres</button></a>	
+			<a href="tambahprogres.php?idproker=<?php echo $idproker; ?>"><button type="button" class="btn btn-warning btn-block " data-toggle="modal">Tambah Progres</button></a>	
 		</div>
 
 

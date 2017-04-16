@@ -1,3 +1,15 @@
+<?php 
+
+	// connect to the database server
+	require_once('dbconnect.php');
+	global $conn;
+
+	$sql = "SELECT * FROM tabelproker";
+
+	$result = mysqli_query($conn,$sql);
+
+?>
+
 <html>
 <head>
 	<title></title>
@@ -14,51 +26,49 @@
 					<a class="navbar-brand" href="#">SLP3K</a>
 				</div>
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="daftarproker.html">Home</a></li>
+					<li class="active"><a href="index.php">Home</a></li>
 					
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#"><span class="glyphicon glyphicon-user"></span> Daftar</a></li>
-					<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+					<li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 				</ul>
 			</div>
 		</nav>
 		<br><br>
-	<h3 class="text-center">Daftar Program Kerja </h3>	
+	<h3 class="text-center">Daftar Program Kerja</h2>	
 	</div>
 	<br>
 	 <br>
 	 <div class="container">
 
-
 		<div class="table-responsive">
 		    <table id="productSizes" class="table">
 		       
 		        <tbody>
-		            <tr>
-		                <td><a href="daftarprogres.html"><button type="button" class="btn btn-primary btn-block" data-toggle="modal" >Penyuluhan Narkoba kepada Pelajar</button></a></td>
-		            </tr>
-		            <tr>
-		                <td><a href="daftarprogres.html"><button type="button" class="btn btn-primary btn-block" data-toggle="modal" >Motivasi Terpusat dan Terpimpin</button></a></td>
-		            </tr>
-		            <tr>
-		                <td><a href="daftarprogres.html"><button type="button" class="btn btn-primary btn-block" data-toggle="modal" >Pengadian Masyarakat Membersihkan Sungai Citarum</button></a></td>
-		            </tr>
+					<?php
+		        	while($row = $result->fetch_assoc()){
+		        		echo '<tr>';
+		        		echo '<td><a href=daftarprogres.php?idproker='.$row['idproker'].'><button type="button" class="btn btn-primary btn-block" data-toggle="modal" >'.$row['namaproker'].'</button></a></td>';
+		        		echo '</tr>';
+		        	}
+					?>
+
 		        </tbody>
 		    </table>
 		</div>
 
+
 		<div class="col-xs-3">
-			<a href="tambahproker.html"><button type="button" class="btn btn-warning btn-block " data-toggle="modal">Tambah Proker</button></a>	
+			<a href="tambahproker.php"><button type="button" class="btn btn-warning btn-block " data-toggle="modal">Tambah Proker</button></a>	
 		</div>
 
 
 		<div class="col-xs-3 pull-right">
-			<button type="button" class="btn btn-success btn-block" style="float:right" data-toggle="modal" data-target="#modalgenerator">Generate Laporan</button>	
+			<a href="generatelaporan.php"><button type="button" class="btn btn-success btn-block" style="float:right" data-toggle="modal" data-target="#modalgenerator">Generate Laporan</button></a>	
 		</div>
 	 	
 		<!-- Modal HTML -->
-	    <div id="modalgenerator" class="modal fade">
+	    <!-- <div id="modalgenerator" class="modal fade">
 	        <div class="modal-dialog">
 	            <div class="modal-content">
 	                <div class="modal-header">
@@ -73,7 +83,7 @@
 	                </div>
 	            </div>
 	        </div>
-	    </div>
+	    </div> -->
 
  	</div>
 

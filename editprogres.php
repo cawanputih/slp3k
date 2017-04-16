@@ -1,3 +1,23 @@
+<?php 
+
+	// connect to the database server
+	require_once('dbconnect.php');
+	global $conn;
+
+
+	$idproker = $_GET['idproker'];
+	$idprogres = $_GET['idprogres'];
+	$sql = "SELECT * FROM tabelprogres WHERE idprogres = '$idprogres'";
+
+	$result = mysqli_query($conn,$sql);
+
+	$row = $result->fetch_assoc();
+	$idprogres = $row['idprogres'];
+	$tanggalprogres = $row['tanggalprogres'];
+	$namaprogres = $row['namaprogres'];
+
+?>
+
 <html>
 <head>
 	<title></title>
@@ -14,38 +34,37 @@
 					<a class="navbar-brand" href="#">SLP3K</a>
 				</div>
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="daftarproker.html">Home</a></li>
+					<li class="active"><a href="index.php">Home</a></li>
 					
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#"><span class="glyphicon glyphicon-user"></span> Daftar</a></li>
-					<li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+					<li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 				</ul>
 			</div>
 		</nav>
 		<br><br>
-	<h3 class="text-center">Edit Progres </h3>	
+	<h3 class="text-center">Edit Progres</h2>	
 	</div>
 
 
 	 <br>
 	 <div class="container">
-            <form class="form-horizontal" role="form">
+            <form action="server/editprogresserver.php?idproker=<?php echo $idproker; ?>&idprogres=<?php echo $idprogres; ?>" class="form-horizontal" role="form" method="post">
                 <div class="form-group">
                     <label for="startdate" class="col-sm-3 control-label">Tanggal Progres</label>
                     <div class="col-sm-9">
-                        <input type="date" class="form-control">
+                        <input type="date" class="form-control" value = "<?php echo $tanggalprogres; ?>" name = "tglprogres">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="deskripsi" class="col-sm-3 control-label ">Progres</label>
                     <div class="col-sm-9">
-                        <input type="text" id="desc" placeholder="" class="form-control" autofocus>
+                        <input type="text" id="desc" placeholder="" class="form-control" value = "<?php echo $namaprogres; ?>" name ="nmprogres" autofocus >
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-9 col-sm-offset-3">
-                        <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#myModal">Simpan</button>
+                    	<input type="Submit" class="btn btn-primary btn-block" value="Simpan">
                     </div>
                 </div>
             </form> <!-- /form -->
