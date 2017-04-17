@@ -33,11 +33,11 @@
 					<a class="navbar-brand" href="#">SLP3K</a>
 				</div>
 				<ul class="nav navbar-nav">
-					<li><a href="daftarproker.php?iddivisi=1">Home</a></li>
+					<li class="active"><a href="index.php">Home</a></li>
 					
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="index.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+					<li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -55,8 +55,6 @@
 		            <tr>
 		                <th class="col-xs-3">Tanggal</th>
 		                <th class="col-xs-7">Progres</th>
-		                <th class="col-xs-1"></th>
-		                <th class="col-xs-1"></th>
 		            </tr>
 		        </thead>
 
@@ -65,8 +63,6 @@
 		        		echo '<tr>';
 		        		echo '<td>'.$row['tanggalprogres'].'</td>';
 		        		echo '<td>'.$row['namaprogres'].'</td>';
-		        		echo '<td><a href=editprogres.php?idproker='.$row['idproker'].'&idprogres='.$row['idprogres'].'><button type="button" class="btn btn-primary btn-block" data-toggle="modal">Edit</button></a></td>';
-		        		echo '<td><a href=server/hapusprogresserver.php?idproker='.$row['idproker'].'&idprogres='.$row['idprogres'].'><button type="button" class="btn btn-danger btn-block" data-toggle="modal" data-target="#myModal">Hapus</button></td>';
 		        		echo '</tr>';
 		        	}
 
@@ -75,11 +71,6 @@
 
 		    </table>
 		</div>
-
-		<div class="col-xs-3">
-			<a href="tambahprogres.php?idproker=<?php echo $idproker; ?>"><button type="button" class="btn btn-warning btn-block " data-toggle="modal">Tambah Progres</button></a>	
-		</div>
-
 
 	
 	 	
